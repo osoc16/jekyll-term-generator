@@ -71,16 +71,22 @@ got(url).then(response => {
     delete space.capacityRounding;
 
     // fix the time
-    space.parkingStatus.lastModifiedDate = new Date(space.parkingStatus.lastModifiedDate).toISOString()
-
+    var lastDate = (space.parkingStatus.lastModifiedDate).replace(/\//g, '-');
+    var d = lastDate.split(' ')[0];
+    var dArr = d.split('-');
+    dArr = dArr.sort(() => 1);
+    d = dArr.join('-');
+    var hour = lastDate.split(' ')[1]
+    lastDate = d + ' ' + hour;
+    space.parkingStatus.lastModifiedDate = new Date(lastDate).toISOString();
     // set the type
     // space['@type'] = '';
 
     graph.push(space);
   };
 
+
   jsonld = {
-    // '@context': base+contextFile,
     '@context': context,
     '@graph': graph
   };
