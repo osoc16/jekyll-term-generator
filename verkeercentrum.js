@@ -1,6 +1,4 @@
 const fs = require('fs');
-const got = require('got');
-const xml2js = require('xml2js');
 const parse = require('datex2-linker-api');
 
 const outputFile = "_data/verkeercentrum.json";
